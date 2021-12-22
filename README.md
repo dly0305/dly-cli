@@ -1,5 +1,5 @@
 <div align="center">
-<h1>diy-cli</h1>
+<h1>dly-cli</h1>
    <a href="https://www.npmjs.com/package/dly-cli">
       <img src="https://img.shields.io/npm/v/dly-cli.svg" alt="npm package" />
    </a>
