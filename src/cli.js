@@ -25,7 +25,6 @@ function parseArgumentsIntoOptions(rawArgs) {
       '-v': '--version',
       '-g': '--git',
       '-i': '--install',
-
     },
     {
       argv: rawArgs.slice(2)

@@ -34,15 +34,19 @@ export async function createTemplate(options) {
   }
 
   // 4.创建任务列表
-  const tasks = new Listr([{
-    title: '加载 webpack 脚手架', task: () => copyTemplateFile(_options)
-  }, {
-    title: 'git 初始化', task: () => initGit(targetDirectory), enabled: () => _options.git,
-  }, {
-    title: '包依赖安装', task: () => projectInstall({
-      prefer: 'yarn', cwd: targetDirectory,
-    }), skip: () => !_options.install ? '默认跳过依赖安装' : undefined,
-  },])
+  const tasks = new Listr([
+    {
+      title: '加载 webpack 脚手架', task: () => copyTemplateFile(_options)
+    },
+    {
+      title: 'git 初始化', task: () => initGit(targetDirectory), enabled: () => _options.git,
+    },
+    {
+      title: '包依赖安装', task: () => projectInstall({
+        prefer: 'npm', cwd: targetDirectory,
+      }), skip: () => !_options.install ? '默认跳过依赖安装' : undefined,
+    }
+  ])
 
   // 执行任务列表
   await tasks.run();
@@ -54,9 +58,9 @@ export async function createTemplate(options) {
 
   console.log(`%s ${_options.name}`, chalk.green('cd'));
   if (!_options.install) {
-    console.log(`%s install`, chalk.green('yarn'));
+    console.log(`%s install`, chalk.green('npm'));
   }
-  console.log(`%s dev`, chalk.green('yarn'));
+  console.log(`%s dev`, chalk.green('npm run'));
 }
 
 /*git 初始化*/
